@@ -37,9 +37,9 @@ const url = `mongodb+srv://fsv-server:$$$Joel123$$$@cluster0.krabfxn.mongodb.net
   app.post('/api/users/:userId/cart', async (req, res) => {
     const userId = req.params.userId;
     const productId = req.body.id;
-
+    console.log(userId + ' ' + productId);
     await db.collection('users').updateOne({ id: userId }, {
-      $addToSet: { cartItems: productId },
+      $addToSet: { cartItems: productId }
     });
 
     const user = await db.collection('users').findOne({ id: req.params.userId });
